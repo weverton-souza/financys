@@ -7,7 +7,7 @@ import { CategoryService } from "../shared/category.service";
 
 import { switchMap } from "rxjs/operators";
 
-import toastr from "toastr";
+import * as toastr from "toastr";
 
 @Component({
   selector: 'app-category-form',
@@ -40,7 +40,6 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
 
   submitForm() {
     this.submittingForm = true;
-    console.log("Aqui 1",this.currentAction )
     if(this.currentAction == 'new') {
       this.createCategory();
     } else {
@@ -58,7 +57,6 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
   }
 
   private setCurrentAction() {
-    console.log(this.route.snapshot.url[0])
     if(this.route.snapshot.url[0].path == 'new') {
       this.currentAction = 'new';
     } else {
@@ -90,15 +88,18 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
   private createCategory() {
     const category: Category = Object.assign(new Category(), this.categoryForm.value);
     this.categoryService.create(category)
-      .subscribe(category => this.actionsForSucess(category), e => this.actionsForError(e));
+      .subscribe(c => this.actionsForSuccess(c), e => this.actionsForError(e));
   }
 
   private updateCategory() {
-    
+    const category: Category = Object.assign(new Category(), this.categoryForm.value);
+    console.log(category)
+    this.categoryService.update(category)
+    .subscribe(c => this.actionsForSuccess(c), e => this.actionsForError(e));
   }
 
-  private actionsForSucess(category: Category) {
-    toastr.sucess("Solicitação processada com sucesso");
+  private actionsForSuccess(category: Category) {
+    toastr.success("Solicitação processada com sucesso");
     this.router.navigateByUrl('categories', { skipLocationChange: true })
       .then(() => this.router.navigate(['categories', category.id, 'edit']));
   }
