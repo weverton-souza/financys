@@ -93,9 +93,8 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
 
   private updateCategory() {
     const category: Category = Object.assign(new Category(), this.categoryForm.value);
-    console.log(category)
     this.categoryService.update(category)
-    .subscribe(c => this.actionsForSuccess(c), e => this.actionsForError(e));
+      .subscribe(c => this.actionsForSuccess(c), e => this.actionsForError(e));
   }
 
   private actionsForSuccess(category: Category) {
