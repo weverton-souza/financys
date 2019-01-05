@@ -89,13 +89,13 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   protected createResource() {
     const resource: T = this.jsonDataToResourceFn(this.resourceForm.value);
     this.resourceService.create(resource)
-      .subscribe(e => this.actionsForError(e), r => this.actionsForSuccess(r));
+      .subscribe(r => this.actionsForSuccess(r), e => this.actionsForError(e));
   }
 
   protected updateResource() {
     const resource: T = this.jsonDataToResourceFn(this.resourceForm.value);
     this.resourceService.update(resource)
-      .subscribe( e => this.actionsForError(e), c => this.actionsForSuccess(c));
+      .subscribe(c => this.actionsForSuccess(c), e => this.actionsForError(e));
   }
 
   protected actionsForSuccess(resource: T) {
