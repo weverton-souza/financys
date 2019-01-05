@@ -3,7 +3,7 @@ import { Validators } from "@angular/forms";
 
 import { Category } from "../shared/category.model";
 import { CategoryService } from "../shared/category.service";
-import { BaseResourceFormComponent } from '../../../shared/components/base-resource-form/base-resource-form.component';
+import { BaseResourceFormComponent } from "../../../shared/components/base-resource-form/base-resource-form.component";
 
 @Component({
   selector: 'app-category-form',
@@ -29,7 +29,7 @@ export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
   }
 
   protected editionPageTitle(): string {
-    const categoryName = this.resource.name || '';
-    return "Editando Categoria: " + categoryName;
+    const resourceName = this.resource.name || '';
+    return "Editando Categoria: " + resourceName;
   }
 }
