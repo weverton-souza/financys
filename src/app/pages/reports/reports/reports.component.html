@@ -22,8 +22,13 @@
         <label for="month">Mês</label>
         <select #month name="month" id="month" class="form-control">
           <option value="">Selecione um mês</option>
-          <option value="1">janeiro</option>
-          <option value="1">Fevereiro</option>
+          <option value="1">Janeiro</option>
+          <option value="2">Fevereiro</option>
+          <option value="3">Março</option>
+          <option value="4">Abril</option>
+          <option value="10">Outubro</option>
+          <option value="11">Novembro</option>
+          <option value="12">Dezembro</option>
         </select>
       </div>
 
@@ -31,10 +36,10 @@
         <label for="year">Ano</label>
         <select #year name="year" id="year" class="form-control">
           <option value="">Selecione um ano</option>
-          <option value="">2015</option>
-          <option value="">2016</option>
-          <option value="">2017</option>
-          <option value="">2018</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
         </select>
       </div>
 
@@ -56,33 +61,35 @@
   <div class="card text-center text-white bg-success">
     <div class="card-header"> Total de Receitas </div>
     <div class="card-body">
-      <h3 class="card-title"> 1500 </h3>
+      <h3 class="card-title"> {{ revenueTotal }} </h3>
     </div>
   </div>
 
   <div class="card text-center text-white bg-danger">
       <div class="card-header"> Total de Despesas </div>
       <div class="card-body">
-        <h3 class="card-title"> 1300 </h3>
+        <h3 class="card-title"> {{ expenseTotal }} </h3>
       </div>
   </div>
 
   <div class="card text-center text-white bg-info">
       <div class="card-header"> Saldo </div>
       <div class="card-body">
-        <h3 class="card-title"> 800 </h3>
+        <h3 class="card-title"> {{ balance }} </h3>
       </div>
 
     </div>
 
 </div>
+
 <hr>
+
 <div class="row mt-5 mb-4">
   <div class="col-md-6">
-    Gráfico de Receitas
+    <p-chart type="bar" [data]="revenueChartData" [options]="chartOptions"></p-chart>
   </div>
 
   <div class="col-md-6">
-    Gráfico de despesas
+      <p-chart type="bar" [data]="expenseChartData" [options]="chartOptions"></p-chart>
   </div>
 </div>
